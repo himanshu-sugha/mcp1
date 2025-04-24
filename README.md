@@ -10,18 +10,41 @@ A FastMCP server plugin providing real-time weather data via WeatherAPI.com.
 
 ## Installation
 
-1. Create and activate a virtual environment:
+1. Clone the repository and navigate into it:
+
+```bash
+git clone https://github.com/himanshu-sugha/mcp1
+cd mcpConfig-main
+```
+
+2. Create and activate a virtual environment:
 
 ```bash
 uv venv
-.venv\Scripts\activate       # Windows
-# source .venv/bin/activate   # macOS/Linux
+. .venv\Scripts\activate       # Windows
+# source .venv/bin/activate      # macOS/Linux
 ```
 
-2. Install dependencies:
+3. Install dependencies:
 
 ```bash
-uv add "mcp[cli]" httpx
+cd server
+uv pip install "mcp[cli]"
+```
+
+
+## Usage
+
+### Development (with MCP Inspector)
+
+```bash
+uv run mcp dev mcp2.py
+```
+
+### Production / Installation
+
+```bash
+uv run mcp install mcp2.py
 ```
 
 ## Features
@@ -36,25 +59,7 @@ uv add "mcp[cli]" httpx
 
 - `get_weather_alerts(area: str) -> str`
   List active weather alerts for a location.
-
-## Usage
-
-### Development (with MCP Inspector)
-
-```bash
-uv run mcp dev server/mcp2.py
-```
-
-Open your MCP client (e.g., VS Code extension) and click **Tool List** to view and invoke the weather tools.
-
-### Production
-
-```bash
-uv run mcp run server/mcp2.py
-```
-
 ## Configuration
 
 - `WEATHER_API_KEY` is defined in `server/mcp2.py` for WeatherAPI.com.
 - Other service endpoints (`PLAYWRIGHT_MCP_URL`, `PROPHET_SERVICE_URL`, `CODE_EXECUTOR_URL`) live in `server/mcp2.py`.
-
